@@ -29,6 +29,8 @@ const config: Config = {
         "custom-gray": "#838383",
         "background-primary": "#FFFFFF",
         "background-secondary": "#F3F3F3",
+        "strokes-primary": "#d4d4d4",
+        "strokes-secondady": "#e6e6e6",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -38,20 +40,27 @@ const config: Config = {
       borderRadius: {
         "1.25": "0.3125rem",
       },
-      padding: {
-        "0.75": "0.1875",
-        "3.7": "0.938rem",
+      spacing: {
+        "0.75": "0.1875rem",
+        "1.25": "0.3125rem",
+        "3.75": "0.9375rem",
         "5.75": "1.4375rem",
+        "6.25": "1.5625rem",
+        "7.5": "1.875rem",
         "8.25": "2.0625rem",
       },
       width: {
         "12.5": "3.125rem",
       },
+      maxWidth: {
+        "100": "25rem",
+      },
       height: {
         "12.5": "3.125rem",
+        "screen-minus-header-footer": "calc(100vh - 82px - 72px)",
       },
       minHeight: {
-        "screen-minus-header": "calc(100vh - 82px)",
+        "screen-minus-header": "calc(100vh - 82px )",
       },
       fontSize: {
         title: "30px",

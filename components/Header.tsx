@@ -10,7 +10,7 @@ const Header = () => {
     name: "Владислав",
   };
   return (
-    <header className="flex w-full justify-between items-center py-3.7 px-5">
+    <header className="flex w-full justify-between items-center py-3.75 px-5">
       <div className="flex items-center gap-5">
         <Image src={logo} alt="Logo" width={80} height={50} />
         <span className="paragraph">
