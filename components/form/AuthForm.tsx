@@ -68,65 +68,74 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
   return (
     <div className="flex justify-center items-center h-screen-minus-header-footer">
-      <div className="flex justify-center items-center flex-col bg-background-primary max-w-100 w-full p-7.5 rounded-1.25 border border-strokes-secondady">
+      <div className="flex justify-center items-start flex-col bg-background-primary max-w-100 w-full p-7.5 rounded-1.25 border border-strokes-secondady">
         <h1 className="title mb-6.25">
-          {type === "login"
-            ? "Вход в Yoldi Agency"
-            : "Регистрация в Yoldi Agency"}
+          {type === "login" ? (
+            "Вход в Yoldi Agency"
+          ) : (
+            <>
+              Регистрация <br /> в Yoldi Agency
+            </>
+          )}
         </h1>
         <form
-          className="flex flex-col gap-3.75"
+          className="flex flex-col gap-3.75 max-w-330 w-full"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <InputField
-            id="email"
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            icon={emailIcon}
-            register={register}
-            error={errors.email}
-            pattern={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
-          />
-          {type === "register" && (
+          <div className="mx-1.25 flex flex-col gap-3.75">
+            {type === "register" && (
+              <InputField
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Имя"
+                icon={userIcon}
+                register={register}
+                error={errors.name}
+                className="w-full"
+              />
+            )}
             <InputField
-              id="name"
-              type="text"
-              name="name"
-              placeholder="Имя"
-              icon={userIcon}
+              id="email"
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              icon={emailIcon}
               register={register}
-              error={errors.name}
+              error={errors.email}
+              pattern={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
+              className="w-full"
             />
-          )}
-          <InputField
-            id="password"
-            type={hiddenPassword ? "text" : "password"}
-            name="password"
-            placeholder="Пароль"
-            icon={lockIcon}
-            register={register}
-            error={errors.password}
-            secondIcon={
-              <button
-                type="button"
-                onClick={hidePassword}
-                aria-label="Переключить видимость пароля"
-                className="flex items-center justify-center"
-              >
-                <EyeIcon isValid={isValid} />
-              </button>
-            }
-          />
-          {errors.root && (
-            <p role="alert" className="text-red-500">
-              {errors.root.message}
-            </p>
-          )}
+            <InputField
+              id="password"
+              type={hiddenPassword ? "text" : "password"}
+              name="password"
+              placeholder="Пароль"
+              icon={lockIcon}
+              register={register}
+              error={errors.password}
+              secondIcon={
+                <button
+                  type="button"
+                  onClick={hidePassword}
+                  aria-label="Переключить видимость пароля"
+                  className="flex items-center justify-center"
+                >
+                  <EyeIcon isValid={isValid} />
+                </button>
+              }
+              className="w-full"
+            />
+            {errors.root && (
+              <p role="alert" className="text-red-500">
+                {errors.root.message}
+              </p>
+            )}
+          </div>
           <button
             type="submit"
             disabled={!isValid}
-            className="mb-1.25 py-3 bg-txt-color disabled:bg-strokes-primary rounded-1.25 text-white btnText"
+            className="mt-2.5 py-3 bg-txt-color disabled:bg-strokes-primary rounded-1.25 text-white btnText"
           >
             {type === "login" ? "Войти" : "Создать аккаунт"}
           </button>

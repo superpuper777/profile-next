@@ -18,6 +18,7 @@ interface InputFieldProps<T extends FieldValues> {
   name: Path<T>;
   pattern?: RegExp;
   error?: FieldError;
+  className?: string;
 }
 
 const InputField = <T extends FieldValues>({
@@ -30,6 +31,7 @@ const InputField = <T extends FieldValues>({
   name,
   pattern,
   error,
+  className,
 }: InputFieldProps<T>) => {
   return (
     <>
@@ -55,7 +57,7 @@ const InputField = <T extends FieldValues>({
           })}
           aria-invalid={!!error}
           aria-describedby={`${id}-error`}
-          className="pl-12 py-[12.5px] border border-custom-gray bg-background-primary rounded-1.25 placeholder:text-custom-gray focus:border-custom-gray focus:ring-0 hover:border-custom-gray hover:ring-0 outline-none"
+          className={`pl-13.75 py-3.125 paragraph border border-custom-gray bg-background-primary rounded-1.25 placeholder:text-custom-gray focus:border-custom-gray focus:ring-0 hover:border-custom-gray hover:ring-0 outline-none ${className}`}
         />
         {secondIcon && (
           <span className="absolute right-5 cursor-pointer top-1/2 transform -translate-y-1/2">
@@ -63,13 +65,11 @@ const InputField = <T extends FieldValues>({
           </span>
         )}
       </div>
-      <div>
-        {error && (
-          <p id={`${id}-error`} role="alert" className="text-red-500">
-            {error.message}
-          </p>
-        )}
-      </div>
+      {error && (
+        <p id={`${id}-error`} role="alert" className="text-red-500">
+          {error.message}
+        </p>
+      )}
     </>
   );
 };
