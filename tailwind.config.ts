@@ -30,7 +30,7 @@ const config: Config = {
         "background-primary": "#FFFFFF",
         "background-secondary": "#F3F3F3",
         "strokes-primary": "#d4d4d4",
-        "strokes-secondady": "#e6e6e6",
+        "strokes-secondary": "#e6e6e6",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

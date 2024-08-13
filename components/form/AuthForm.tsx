@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 
-import emailIcon from "@/public/email-icon.svg";
-import userIcon from "@/public/name-user-icon.svg";
-import lockIcon from "@/public/pas-lock-icon.svg";
+import emailIcon from "@/public/images/form/email-icon.svg";
+import userIcon from "@/public/images/form/name-user-icon.svg";
+import lockIcon from "@/public/images/form/pas-lock-icon.svg";
 import InputField from "./InputField";
 import { EyeIcon } from "./EyeIcon";
 
@@ -68,7 +68,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
   return (
     <div className="flex justify-center items-center h-screen-minus-header-footer">
-      <div className="flex justify-center items-start flex-col bg-background-primary max-w-100 w-full p-7.5 rounded-1.25 border border-strokes-secondady">
+      <div className="flex justify-center items-start flex-col bg-background-primary max-w-100 w-full p-7.5 rounded-1.25 border border-strokes-secondary">
         <h1 className="title mb-6.25">
           {type === "login" ? (
             "Вход в Yoldi Agency"

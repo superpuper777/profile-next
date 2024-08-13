@@ -24,7 +24,7 @@ const Header = () => {
             <div className="w-12.5 h-12.5 rounded-full overflow-hidden">
               <Image
                 src={mockUser.url}
-                alt="User Avatar"
+                alt="Изображение профиля"
                 width={50}
                 height={50}
                 className="object-cover"
