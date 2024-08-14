@@ -2,10 +2,12 @@ import Image from "next/image";
 
 import editIcon from "@/public/images/profile/edit-icon.svg";
 import logoutIcon from "@/public/images/profile/logout-icon.svg";
+import { ProfileDto } from "@/app/types/profile";
 
 type ProfileData = {
-  data: any;
+  data: ProfileDto;
 };
+
 const ProfileContent = ({ data }: ProfileData) => {
   const { name, email, description } = data;
   return (
