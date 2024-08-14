@@ -11,12 +11,7 @@ const ProfileHeader = () => {
     <div className="relative bg-strokes-secondary h-[200px]">
       {profileBanner ? (
         <div className="relative w-full h-full">
-          <Image
-            src={profileBanner}
-            alt="Banner"
-            layout="fill"
-            objectFit="cover"
-          />
+          <Image src={profileBanner} alt="Banner" fill />
         </div>
       ) : null}
 

@@ -1,23 +1,41 @@
-import logoutIcon from "@/public/images/profile/logout-icon.svg";
-import editIcon from "@/public/images/profile/edit-icon.svg";
+import Image from "next/image";
 
-const ProfileContent = () => {
+import editIcon from "@/public/images/profile/edit-icon.svg";
+import logoutIcon from "@/public/images/profile/logout-icon.svg";
+
+type ProfileData = {
+  data: any;
+};
+const ProfileContent = ({ data }: ProfileData) => {
+  const { name, email, description } = data;
   return (
-    <div>
-      <div>
-        <div>
-          <h1>title</h1>
-          <span>subtitle</span>
+    <div className="px-[240px] py-[85px] bg-background-primary">
+      <div className="flex items-start justify-between">
+        <div className="mb-[30px]">
+          <h1 className="title mb-[10px]">{name}</h1>
+          <span className="paragraph text-custom-gray">{email}</span>
         </div>
-        <button>Редактировать</button>
+        <button
+          type="button"
+          className="flex items-center gap-[10px] px-[22px] py-[7px] btnText border"
+        >
+          <Image
+            src={editIcon}
+            alt="Иконка редактирования"
+            width={25}
+            height={25}
+          />
+          Редактировать
+        </button>
       </div>
-      <p>
-        Рыбатекст используется дизайнерами, проектировщиками и фронтендерами,
-        когда нужно быстро заполнить макеты или прототипы содержимым. Это
-        тестовый контент, который не должен нести никакого смысла, лишь показать
-        наличие самого текста или продемонстрировать типографику в деле.
-      </p>
-      <button>Выйти</button>
+      <p className="paragraph mb-[60px]">{description}</p>
+      <button
+        type="button"
+        className="flex items-center gap-[10px] px-[22px] py-[7px] btnText border"
+      >
+        <Image src={logoutIcon} alt="Иконка выхода" width={25} height={25} />
+        Выйти
+      </button>
     </div>
   );
 };

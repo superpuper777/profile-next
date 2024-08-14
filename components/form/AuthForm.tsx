@@ -10,6 +10,7 @@ import userIcon from "@/public/images/form/name-user-icon.svg";
 import lockIcon from "@/public/images/form/pas-lock-icon.svg";
 import InputField from "./InputField";
 import { EyeIcon } from "./EyeIcon";
+import { useAuth } from "@/app/context/AuthContext";
 
 export type FormValues = {
   email: string;
@@ -30,6 +31,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     reset,
   } = useForm<FormValues>({ mode: "onChange" });
   const router = useRouter();
+  const { setApiKey } = useAuth();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [hiddenPassword, setHiddenPassword] = useState(false);
   const hidePassword = () => setHiddenPassword((prev) => !prev);
@@ -56,7 +58,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       }
       const apiKey = response.data.value;
 
-      localStorage.setItem("api_key", apiKey);
+      setApiKey(apiKey);
 
       console.log("Login successful!");
       router.push("/account/owner");

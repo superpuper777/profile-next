@@ -1,13 +1,8 @@
-import ProfileContent from "@/components/profile/ProfileContent";
-import ProfileHeader from "@/components/profile/ProfileHeader";
+import Profile from "./Profile";
 
-const ProfilePage = () => {
-  return (
-    <div>
-      <ProfileHeader />
-      <ProfileContent />
-    </div>
-  );
+const ProfilePage = async () => {
+
+  return <Profile />;
 };
 
 export default ProfilePage;
