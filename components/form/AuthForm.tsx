@@ -71,7 +71,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   return (
     <div className="flex justify-center items-center h-screen-minus-header-footer">
       <div className="flex justify-center items-start flex-col bg-background-primary max-w-100 w-full p-7.5 rounded-1.25 border border-strokes-secondary">
-        <h1 className="title mb-6.25">
+        <h2 className="title font-semibold mb-6.25">
           {type === "login" ? (
             "Вход в Yoldi Agency"
           ) : (
@@ -79,7 +79,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
               Регистрация <br /> в Yoldi Agency
             </>
           )}
-        </h1>
+        </h2>
         <form
           className="flex flex-col gap-3.75 max-w-330 w-full"
           onSubmit={handleSubmit(onSubmit)}

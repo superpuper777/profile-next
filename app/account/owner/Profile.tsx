@@ -3,51 +3,84 @@ import axios from "axios";
 import ProfileContent from "@/components/profile/ProfileContent";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import { useAuth } from "@/app/context/AuthContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useSWR from "swr";
+import { ProfileDto } from "@/app/types/profile";
+
+const fetcher = async (url: string, apiKey: string): Promise<ProfileDto> => {
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-KEY": apiKey,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(
+        error.response.data.message || "Ошибка при получении данных"
+      );
+    } else {
+      throw new Error("Ошибка при получении данных");
+    }
+  }
+};
 
 const Profile = () => {
   const { apiKey } = useAuth();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!apiKey) {
-        setError("API key is missing");
-        setLoading(false);
-        return;
+  const { data, error, mutate } = useSWR<ProfileDto>(
+    [`${apiUrl}/api/profile`, apiKey],
+    ([url, key]) => {
+      if (typeof key !== "string") {
+        throw new Error("API ключ должен быть строкой");
       }
+      return fetcher(url, key);
+    }
+  );
 
-      try {
-        const endpoint = "/api/profile";
-        const response = await axios.get(`${apiUrl}${endpoint}`, {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  if (error) return <div>Ошибка загрузки профиля</div>;
+  if (!data) return <div>Загрузка...</div>;
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
+  const handleProfileUpdate = async (updatedProfile: ProfileDto) => {
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/api/profile`,
+        updatedProfile,
+        {
           headers: {
             "Content-Type": "application/json",
             "X-API-KEY": apiKey,
           },
-        });
-
-        setData(response.data);
-      } catch (error: any) {
-        setError(error.message || "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [apiKey, apiUrl]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+        }
+      );
+      mutate(response.data, false);
+      closeModal();
+    } catch (error) {
+      console.error("Ошибка при обновлении профиля:", error);
+    }
+  };
 
   return (
     <div>
-      <ProfileHeader />
-      <ProfileContent data={data} />
+      <ProfileHeader
+        name={data?.name}
+        images={{ image: data?.image, cover: data?.cover }}
+      />
+      <ProfileContent
+        data={data}
+        isModalOpen={isModalOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+        onUpdateProfile={handleProfileUpdate}
+      />
     </div>
   );
 };

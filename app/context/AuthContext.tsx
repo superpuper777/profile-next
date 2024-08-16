@@ -10,16 +10,16 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [apiKey, setApiKey] = useState<string | null>(
-    localStorage.getItem("api_key")
-  );
-
-  // useEffect(() => {
-  //   const storedApiKey = ;
-  //   if (storedApiKey) {
-  //     setApiKey(storedApiKey);
-  //   }
-  // }, []);
+  // const [apiKey, setApiKey] = useState<string | null>(
+  //   localStorage.getItem("api_key")
+  // );
+  const [apiKey, setApiKey] = useState<string | null>(null);
+  useEffect(() => {
+    const storedApiKey = localStorage.getItem("api_key");
+    if (storedApiKey) {
+      setApiKey(storedApiKey);
+    }
+  }, []);
 
   useEffect(() => {
     if (apiKey) {

@@ -1,7 +1,17 @@
 import Image from "next/image";
+import { ProfileDto } from "@/app/types/profile";
+import { ImageDto } from "@/app/types/image";
 import profileBanner from "@/public/images/profile/profile_banner.png";
 
-const ProfileHeader = () => {
+type ProfileHeaderProps = {
+  name: ProfileDto["name"];
+  images: {
+    image: ProfileDto["image"];
+    cover: ProfileDto["cover"];
+  };
+};
+
+const ProfileHeader = ({ name, images }: ProfileHeaderProps) => {
   const mockUser = {
     url: "https://frontend-test-api.yoldi.agency/api/image/src/a7a3455f-ee74-4ccf-b95a-da14e2590f4c",
     name: "Владислав",

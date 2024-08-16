@@ -1,7 +1,6 @@
 import Profile from "./Profile";
 
-const ProfilePage = async () => {
-
+const ProfilePage = () => {
   return <Profile />;
 };
 

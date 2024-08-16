@@ -51,19 +51,23 @@ const config: Config = {
         "7.5": "1.875rem",
         "8.25": "2.0625rem",
         "13.75": "3.4375rem",
+        "37,5": "9,375rem",
       },
       width: {
         "12.5": "3.125rem",
       },
       maxWidth: {
         "100": "25rem",
+        "150": "37.5rem",
       },
       height: {
         "12.5": "3.125rem",
+        "50": "12,5rem",
         "screen-minus-header-footer": "calc(100vh - 82px - 72px)",
       },
       minHeight: {
         "screen-minus-header": "calc(100vh - 82px )",
+        "150": "37.5rem",
       },
       fontSize: {
         title: "30px",
