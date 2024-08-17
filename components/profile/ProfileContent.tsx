@@ -2,17 +2,18 @@ import EditProfileModal from "./EditProfileModal";
 import { ProfileDto } from "@/app/types/profile";
 
 import { EditButton, LogoutButton } from "./UserButtons";
+import { useProfileStore } from "@/store/useProfileStore";
 
 type ProfileContentProps = {
-  data: ProfileDto;
   onUpdateProfile: (updatedProfile: ProfileDto) => void;
 };
 
-const ProfileContent: React.FC<ProfileContentProps> = ({
-  data,
-  onUpdateProfile,
-}) => {
-  const { name, email, description } = data;
+const ProfileContent: React.FC<ProfileContentProps> = ({ onUpdateProfile }) => {
+  const { profile } = useProfileStore();
+  if (!profile) {
+    return <div>Загрузка...</div>;
+  }
+  const { name, email, description } = profile;
   return (
     <div className="px-60 py-21.25 bg-background-primary">
       <div className="flex items-start justify-between">
@@ -24,10 +25,7 @@ const ProfileContent: React.FC<ProfileContentProps> = ({
       </div>
       <p className="paragraph mb-15">{description}</p>
       <LogoutButton />
-      <EditProfileModal
-        data={data}
-        onUpdate={onUpdateProfile}
-      />
+      <EditProfileModal data={profile} onUpdate={onUpdateProfile} />
     </div>
   );
 };

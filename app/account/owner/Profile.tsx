@@ -9,29 +9,12 @@ import ProfileHeader from "@/components/profile/ProfileHeader";
 
 import { ProfileDto } from "@/app/types/profile";
 import { useAuthStore } from "@/store/useAuthStore";
-
-const fetcher = async (url: string, apiKey: string): Promise<ProfileDto> => {
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-API-KEY": apiKey,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      throw new Error(
-        error.response.data.message || "Ошибка при получении данных"
-      );
-    } else {
-      throw new Error("Ошибка при получении данных");
-    }
-  }
-};
+import { fetchProfile, updateProfile } from "@/utils/fetcher";
+import { useProfileStore } from "@/store/useProfileStore";
 
 const Profile = () => {
   const { apiKey } = useAuthStore();
+  const { setProfile } = useProfileStore();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const { closeModal } = useModalStore();
 
@@ -41,7 +24,12 @@ const Profile = () => {
       if (typeof key !== "string") {
         throw new Error("API ключ должен быть строкой");
       }
-      return fetcher(url, key);
+      return fetchProfile(url, key);
+    },
+    {
+      onSuccess: (data) => {
+        setProfile(data);
+      },
     }
   );
 
@@ -49,18 +37,17 @@ const Profile = () => {
   if (!data) return <div>Загрузка...</div>;
 
   const handleProfileUpdate = async (updatedProfile: ProfileDto) => {
+    if (!apiKey) {
+      throw new Error("API ключ должен быть строкой");
+    }
     try {
-      const response = await axios.patch(
+      const updatedData = await updateProfile(
         `${apiUrl}/api/profile`,
         updatedProfile,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-API-KEY": apiKey,
-          },
-        }
+        apiKey
       );
-      mutate(response.data, false);
+      setProfile(updatedData);
+      mutate(updatedData, false);
       closeModal();
     } catch (error) {
       console.error("Ошибка при обновлении профиля:", error);
@@ -69,11 +56,8 @@ const Profile = () => {
 
   return (
     <div>
-      <ProfileHeader
-        name={data?.name}
-        images={{ image: data?.image, cover: data?.cover }}
-      />
-      <ProfileContent data={data} onUpdateProfile={handleProfileUpdate} />
+      <ProfileHeader />
+      <ProfileContent onUpdateProfile={handleProfileUpdate} />
     </div>
   );
 };

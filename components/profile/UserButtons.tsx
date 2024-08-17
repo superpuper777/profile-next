@@ -8,13 +8,16 @@ import { useAuthStore } from "@/store/useAuthStore";
 import IconButton from "../IconButton";
 import editIcon from "@/public/images/profile/edit-icon.svg";
 import logoutIcon from "@/public/images/profile/logout-icon.svg";
+import { useProfileStore } from "@/store/useProfileStore";
 
 const LogoutButton = () => {
   const { clearApiKey } = useAuthStore();
+  const { clearProfile } = useProfileStore();
   const router = useRouter();
 
   const handleLogout = () => {
     clearApiKey();
+    clearProfile();
     router.push("/login");
   };
 
@@ -32,7 +35,7 @@ const LogoutButton = () => {
 const EditButton = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const {openModal} = useModalStore();
+  const { openModal } = useModalStore();
 
   const handleEditClick = () => {
     openModal();

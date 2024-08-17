@@ -1,14 +1,15 @@
-import Image from "next/image";
+"use client";
 
-import logo from "@/public/logo-wrapper.svg";
+import Image from "next/image";
 import Link from "next/link";
 
+import { useProfileStore } from "@/store/useProfileStore";
+import logo from "@/public/logo-wrapper.svg";
+import ProfileAvatar from "./profile/ProfileAvatar";
+
 const Header = () => {
-  const isAuth = false;
-  const mockUser = {
-    url: "https://frontend-test-api.yoldi.agency/api/image/src/a7a3455f-ee74-4ccf-b95a-da14e2590f4c",
-    name: "Владислав",
-  };
+  const { profile } = useProfileStore();
+
   return (
     <header className="flex w-full justify-between items-center py-3.75 px-5">
       <div className="flex items-center gap-5">
@@ -18,18 +19,14 @@ const Header = () => {
         </span>
       </div>
       <div>
-        {isAuth ? (
+        {profile ? (
           <div className="flex items-center gap-5">
-            <span>{mockUser.name}</span>
-            <div className="w-12.5 h-12.5 rounded-full overflow-hidden">
-              <Image
-                src={mockUser.url}
-                alt="Изображение профиля"
-                width={50}
-                height={50}
-                className="object-cover"
-              />
-            </div>
+            <span>{profile.name}</span>
+            <ProfileAvatar
+              size={50}
+              className="w-12.5 h-12.5 rounded-full overflow-hidden"
+              classNameForName="subtitle"
+            />
           </div>
         ) : (
           <Link

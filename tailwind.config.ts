@@ -64,7 +64,7 @@ const config: Config = {
       },
       height: {
         "12.5": "3.125rem",
-        "50": "12,5rem",
+        "50": "12.5rem",
         "screen-minus-header-footer": "calc(100vh - 82px - 72px)",
       },
       minHeight: {
