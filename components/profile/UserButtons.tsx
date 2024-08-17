@@ -1,16 +1,16 @@
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
-import { useAuth } from "@/app/context/AuthContext";
+import { useModalStore } from "@/store/useModalStore";
+import { useAuthStore } from "@/store/useAuthStore";
+
 import IconButton from "../IconButton";
-
 import editIcon from "@/public/images/profile/edit-icon.svg";
 import logoutIcon from "@/public/images/profile/logout-icon.svg";
 
-const LogoutButton: React.FC = () => {
-  const { clearApiKey } = useAuth();
+const LogoutButton = () => {
+  const { clearApiKey } = useAuthStore();
   const router = useRouter();
 
   const handleLogout = () => {
@@ -29,12 +29,21 @@ const LogoutButton: React.FC = () => {
   );
 };
 
-const EditButton: React.FC<{ openModal: () => void }> = ({ openModal }) => {
+const EditButton = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const {openModal} = useModalStore();
+
+  const handleEditClick = () => {
+    openModal();
+    router.push(`${pathname}?edit=true`);
+  };
+
   return (
     <IconButton
       iconSrc={editIcon}
       iconAlt="Иконка редактирования"
-      onClick={openModal}
+      onClick={handleEditClick}
       text="Редактировать"
     />
   );

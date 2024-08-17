@@ -3,10 +3,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import InputField from "../form/InputField";
 import EmailInput from "../form/EmailInput";
 import { ProfileDto } from "@/app/types/profile";
+import { useModalStore } from "@/store/useModalStore";
+import { usePathname, useRouter } from "next/navigation";
 
 type EditProfileModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
   data: ProfileDto;
   onUpdate: (updatedProfile: ProfileDto) => void;
 };
@@ -19,11 +19,12 @@ type FormValues = {
 };
 
 const EditProfileModal: React.FC<EditProfileModalProps> = ({
-  isOpen,
   data,
-  onClose,
   onUpdate,
 }) => {
+  const { isOpen, closeModal } = useModalStore();
+  const router = useRouter();
+  const pathname = usePathname();
   const {
     register,
     handleSubmit,
@@ -56,7 +57,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       ...formData,
     });
     setIsLoading(false);
-    onClose();
+    closeModal();
+  };
+
+  const handleCloseModal = () => {
+    closeModal();
+    router.replace(pathname);
   };
 
   if (!isOpen) return null;
@@ -102,7 +108,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           <div className="w-full flex items-center gap-2.5 mt-2.5">
             <button
               type="button"
-              onClick={onClose}
+              onClick={handleCloseModal}
               className="flex-1 border border-custom-gray bg-background-primary text-txt-color btnText text-center py-3 rounded-1.25"
             >
               Отмена
