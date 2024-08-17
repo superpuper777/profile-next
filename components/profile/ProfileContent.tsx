@@ -1,8 +1,9 @@
 import EditProfileModal from "./EditProfileModal";
 import { ProfileDto } from "@/app/types/profile";
 
-import { EditButton, LogoutButton } from "./UserButtons";
+import useIsGuest from "@/hooks/useIsGuest";
 import { useProfileStore } from "@/store/useProfileStore";
+import { EditButton, LogoutButton } from "./UserButtons";
 
 type ProfileContentProps = {
   onUpdateProfile: (updatedProfile: ProfileDto) => void;
@@ -10,6 +11,7 @@ type ProfileContentProps = {
 
 const ProfileContent: React.FC<ProfileContentProps> = ({ onUpdateProfile }) => {
   const { profile } = useProfileStore();
+  const isGuest = useIsGuest();
   if (!profile) {
     return <div>Загрузка...</div>;
   }
@@ -21,10 +23,10 @@ const ProfileContent: React.FC<ProfileContentProps> = ({ onUpdateProfile }) => {
           <h1 className="title mb-2.5">{name}</h1>
           <span className="paragraph text-custom-gray">{email}</span>
         </div>
-        <EditButton />
+        {!isGuest && <EditButton />}
       </div>
       <p className="paragraph mb-15">{description}</p>
-      <LogoutButton />
+      {!isGuest && <LogoutButton />}
       <EditProfileModal data={profile} onUpdate={onUpdateProfile} />
     </div>
   );

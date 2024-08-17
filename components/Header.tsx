@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useProfileStore } from "@/store/useProfileStore";
+import useIsGuest from "@/hooks/useIsGuest";
 import logo from "@/public/logo-wrapper.svg";
 import ProfileAvatar from "./profile/ProfileAvatar";
 
 const Header = () => {
   const { profile } = useProfileStore();
-
+  const isGuest = useIsGuest();
   return (
     <header className="flex w-full justify-between items-center py-3.75 px-5">
       <div className="flex items-center gap-5">
@@ -19,7 +20,7 @@ const Header = () => {
         </span>
       </div>
       <div>
-        {profile ? (
+        {profile && !isGuest ? (
           <div className="flex items-center gap-5">
             <span>{profile.name}</span>
             <ProfileAvatar

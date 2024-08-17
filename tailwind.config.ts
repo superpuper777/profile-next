@@ -57,6 +57,7 @@ const config: Config = {
       },
       width: {
         "12.5": "3.125rem",
+        "25": "6.25rem",
       },
       maxWidth: {
         "100": "25rem",
@@ -64,6 +65,7 @@ const config: Config = {
       },
       height: {
         "12.5": "3.125rem",
+        "25": "6.25rem",
         "50": "12.5rem",
         "screen-minus-header-footer": "calc(100vh - 82px - 72px)",
       },

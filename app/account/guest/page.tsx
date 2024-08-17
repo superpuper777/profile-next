@@ -1,7 +1,7 @@
 import Profile from "../Profile";
 
-const ProfilePage = () => {
+const GuestPage = () => {
   return <Profile />;
 };
 
-export default ProfilePage;
+export default GuestPage;

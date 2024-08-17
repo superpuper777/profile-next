@@ -24,7 +24,7 @@ const ProfileHeader = () => {
 
       <ProfileAvatar
         size={100}
-        className="absolute top-37.5 left-60"
+        className="absolute top-37.5 left-60  w-25 h-25 "
         classNameForName="text-4xl"
       />
     </div>

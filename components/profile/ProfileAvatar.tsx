@@ -32,7 +32,7 @@ const ProfileAvatar: React.FC<AvatarProps> = ({
   const avatarSizeClass = `${size}px`;
   const defaultClassNames = `rounded-full overflow-hidden bg-background-secondary ${
     !image ? "border border-strokes-secondary" : ""
-  } flex items-center justify-center w-[${avatarSizeClass}] h-[${avatarSizeClass}] ${className}`;
+  } flex items-center justify-center ${className}`;
 
   return (
     <div className={defaultClassNames}>
