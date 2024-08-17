@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { ProfileDto } from "@/app/types/profile";
 import { ImageDto } from "@/app/types/image";
-import profileBanner from "@/public/images/profile/profile_banner.png";
 
 type ProfileHeaderProps = {
   name: ProfileDto["name"];
@@ -12,28 +11,43 @@ type ProfileHeaderProps = {
 };
 
 const ProfileHeader = ({ name, images }: ProfileHeaderProps) => {
-  const mockUser = {
-    url: "https://frontend-test-api.yoldi.agency/api/image/src/a7a3455f-ee74-4ccf-b95a-da14e2590f4c",
-    name: "Владислав",
+  const { image, cover } = images;
+
+  const getInitials = (name?: string) => {
+    if (!name) return "";
+    const names = name.split(" ");
+    const initials = names.map((n) => n[0]).join("");
+    return initials.toUpperCase();
+  };
+  const getImageSrc = (imageDto: ImageDto | null) => {
+    return imageDto ? imageDto.url : "";
   };
 
   return (
-    <div className="relative bg-strokes-secondary h-[200px]">
-      {profileBanner ? (
+    <div className="relative bg-background-secondary h-[200px]">
+      {cover ? (
         <div className="relative w-full h-full">
-          <Image src={profileBanner} alt="Banner" fill />
+          <Image src={getImageSrc(cover)} alt="Banner" fill />
         </div>
-      ) : null}
+      ) : (
+        <div className="relative border border-strokes-secondary w-full h-full" />
+      )}
 
-      <div className="absolute top-[150px] left-[240px] rounded-full overflow-hidden bg-background-secondary">
-        {mockUser.url ? (
+      <div
+        className={`absolute top-[150px] left-[240px] rounded-full overflow-hidden bg-background-secondary ${!image ? "border border-strokes-secondary" : ""} flex items-center justify-center w-[100px] h-[100px]`}
+      >
+        {image ? (
           <Image
-            src={mockUser.url}
+            src={getImageSrc(image)}
             alt="Profile Picture"
             width={100}
             height={100}
           />
-        ) : null}
+        ) : (
+          <div className="text-txt-color font-semibold flex items-center justify-center w-full h-full text-4xl">
+            {getInitials(name)}
+          </div>
+        )}
       </div>
     </div>
   );

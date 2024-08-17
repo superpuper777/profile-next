@@ -5,6 +5,7 @@ import React, { createContext, useState, useEffect, ReactNode } from "react";
 interface AuthContextType {
   apiKey: string | null;
   setApiKey: (key: string | null) => void;
+  clearApiKey: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -29,8 +30,12 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [apiKey]);
 
+  const clearApiKey = () => {
+    setApiKey(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ apiKey, setApiKey }}>
+    <AuthContext.Provider value={{ apiKey, setApiKey, clearApiKey }}>
       {children}
     </AuthContext.Provider>
   );

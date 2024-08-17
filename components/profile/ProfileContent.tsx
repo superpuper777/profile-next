@@ -1,9 +1,7 @@
-import Image from "next/image";
-
 import EditProfileModal from "./EditProfileModal";
 import { ProfileDto } from "@/app/types/profile";
-import editIcon from "@/public/images/profile/edit-icon.svg";
-import logoutIcon from "@/public/images/profile/logout-icon.svg";
+
+import { EditButton, LogoutButton } from "./UserButtons";
 
 type ProfileContentProps = {
   data: ProfileDto;
@@ -28,28 +26,10 @@ const ProfileContent: React.FC<ProfileContentProps> = ({
           <h1 className="title mb-[10px]">{name}</h1>
           <span className="paragraph text-custom-gray">{email}</span>
         </div>
-        <button
-          type="button"
-          className="flex items-center gap-[10px] px-[22px] py-[7px] btnText border"
-          onClick={openModal}
-        >
-          <Image
-            src={editIcon}
-            alt="Иконка редактирования"
-            width={25}
-            height={25}
-          />
-          Редактировать
-        </button>
+        <EditButton openModal={openModal} />
       </div>
       <p className="paragraph mb-[60px]">{description}</p>
-      <button
-        type="button"
-        className="flex items-center gap-[10px] px-[22px] py-[7px] btnText border"
-      >
-        <Image src={logoutIcon} alt="Иконка выхода" width={25} height={25} />
-        Выйти
-      </button>
+      <LogoutButton />
       <EditProfileModal
         isOpen={isModalOpen}
         onClose={closeModal}
