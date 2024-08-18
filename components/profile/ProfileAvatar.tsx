@@ -1,27 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { useProfileStore } from "@/store/useProfileStore";
 import { getImageSrc } from "@/utils/imageUtils";
+import { ImageDto } from "@/app/types/image";
 
-interface AvatarProps {
+type AvatarProps = {
   size?: number;
   className?: string;
   classNameForName?: string;
-}
+  name?: string;
+  image?: ImageDto | null;
+};
 
 const ProfileAvatar: React.FC<AvatarProps> = ({
   size = 50,
   className = "",
   classNameForName = "",
+  name,
+  image,
 }) => {
-  const { profile } = useProfileStore();
-
-  if (!profile) return <div>Загрузка...</div>;
-  const { name, image } = profile;
-
-  console.log(image);
-
   const getInitials = (name?: string) => {
     if (!name) return "";
     const names = name.split(" ");
@@ -29,10 +26,9 @@ const ProfileAvatar: React.FC<AvatarProps> = ({
     return initials.toUpperCase();
   };
 
-  const avatarSizeClass = `${size}px`;
   const defaultClassNames = `rounded-full overflow-hidden bg-background-secondary ${
     !image ? "border border-strokes-secondary" : ""
-  } flex items-center justify-center ${className}`;
+  } flex items-center justify-center ${className} w-[${size}px] h-[${size}px]`;
 
   return (
     <div className={defaultClassNames}>

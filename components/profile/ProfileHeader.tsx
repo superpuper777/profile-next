@@ -10,7 +10,7 @@ const ProfileHeader = () => {
   if (!profile) {
     return <div>Загрузка...</div>;
   }
-  const { cover } = profile;
+  const { cover, name, image } = profile;
 
   return (
     <div className="relative bg-background-secondary h-50">
@@ -23,6 +23,8 @@ const ProfileHeader = () => {
       )}
 
       <ProfileAvatar
+        name={name}
+        image={image || undefined}
         size={100}
         className="absolute top-37.5 left-60  w-25 h-25 "
         classNameForName="text-4xl"

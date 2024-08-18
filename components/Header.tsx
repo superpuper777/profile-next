@@ -24,6 +24,8 @@ const Header = () => {
           <div className="flex items-center gap-5">
             <span>{profile.name}</span>
             <ProfileAvatar
+              name={profile.name}
+              image={profile.image}
               size={50}
               className="w-12.5 h-12.5 rounded-full overflow-hidden"
               classNameForName="subtitle"
