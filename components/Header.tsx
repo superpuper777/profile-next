@@ -11,7 +11,6 @@ import ProfileAvatar from "./profile/ProfileAvatar";
 const Header = () => {
   const { profile } = useProfileStore();
   const isGuest = useIsGuest();
-
   return (
     <header className="flex w-full justify-between items-center pt-3.75 pb-3.5 px-5 border-b border-strokes-secondary">
       <div className="flex items-center justify-center gap-5">

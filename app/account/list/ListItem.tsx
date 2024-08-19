@@ -9,7 +9,9 @@ type ListItemProps = {
 
 const ListItem = ({ name, email, image }: ListItemProps) => {
   return (
-    <div className="py-2.5 border-b border-t border-strokes-secondary flex items-center justify-start">
+    <div
+      className={`py-[9px] border-b-[0.5px] border-strokes-secondary flex items-center justify-start`}
+    >
       <ProfileAvatar
         name={name}
         image={image}
