@@ -11,9 +11,10 @@ import ProfileAvatar from "./profile/ProfileAvatar";
 const Header = () => {
   const { profile } = useProfileStore();
   const isGuest = useIsGuest();
+
   return (
-    <header className="flex w-full justify-between items-center py-3.75 px-5 border-b border-strokes-secondary">
-      <div className="flex items-center gap-5">
+    <header className="flex w-full justify-between items-center pt-3.75 pb-3.5 px-5 border-b border-strokes-secondary">
+      <div className="flex items-center justify-center gap-5">
         <Image src={logo} alt="Logo" width={80} height={50} />
         <span className="paragraph hidden lg:block">
           Разрабатываем и запускаем <br /> сложные веб проекты
@@ -21,7 +22,7 @@ const Header = () => {
       </div>
       <div>
         {profile && !isGuest ? (
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 mr-[10px]">
             <span>{profile.name}</span>
             <ProfileAvatar
               name={profile.name}
@@ -34,7 +35,7 @@ const Header = () => {
         ) : (
           <Link
             href="/login"
-            className="py-0.75 px-8.25 border cursor-pointer border-gray-200 rounded-1.25 flex items-center justify-center text-center btnText font-medium"
+            className="py-1.75 px-8.25 mr-[10px] border cursor-pointer border-gray-200 rounded-1.25 flex items-center justify-center text-center btnText font-medium"
           >
             Войти
           </Link>

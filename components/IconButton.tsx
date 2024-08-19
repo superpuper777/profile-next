@@ -23,7 +23,7 @@ const IconButton: React.FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`flex items-center gap-[10px] px-[22px] py-[7px] btnText border ${className}`}
+      className={`flex items-center gap-[10px] px-[22.1px] py-[6.1px] btnText border ${className}`}
     >
       <Image src={iconSrc} alt={iconAlt} width={25} height={25} />
       {text}

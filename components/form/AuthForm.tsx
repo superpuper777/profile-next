@@ -70,7 +70,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
   return (
     <div className="flex justify-center h-screen-minus-header-footer xs:items-start md:items-center">
-      <div className="flex md:justify-center md:items-start flex-col bg-background-primary max-w-100 md:h-auto xs:h-full xs:justify-start w-full p-7.5 rounded-1.25 border border-strokes-secondary">
+      <div className="flex md:justify-center md:items-start flex-col bg-background-primary w-100 h-100 md:h-auto xs:h-full xs:justify-start p-7.5 rounded-1.25 border border-strokes-secondary">
         <h2 className="title font-semibold mb-6.25">
           {type === "login" ? (
             "Вход в Yoldi Agency"
@@ -81,10 +81,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           )}
         </h2>
         <form
-          className="flex flex-col gap-3.75 max-w-330 w-full"
+          className="flex flex-col gap-3.75 w-full"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="mx-1.25 flex flex-col gap-3.75">
+          <div className="mx-1.25 flex flex-col gap-3.5">
             {type === "register" && (
               <InputField
                 id="name"

@@ -105,7 +105,7 @@ const InputField = <T extends FieldValues>({
             value={value}
             className={`${
               labelPosition === "inside" ? "pl-13.75" : "pl-5"
-            } py-3.125 paragraph border border-custom-gray bg-background-primary rounded-1.25 placeholder:text-custom-gray focus:border-custom-gray focus:ring-0 hover:border-custom-gray hover:ring-0 outline-none ${className}`}
+            } py-3 paragraph border border-custom-gray bg-background-primary rounded-1.25 placeholder:text-custom-gray focus:border-custom-gray focus:ring-0 hover:border-custom-gray hover:ring-0 outline-none ${className}`}
           />
         )}
         {secondIcon && labelPosition === "inside" && (

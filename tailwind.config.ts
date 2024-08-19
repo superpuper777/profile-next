@@ -46,13 +46,16 @@ const config: Config = {
       spacing: {
         "0.75": "0.1875rem",
         "1.25": "0.3125rem",
+        "1.75": "0.4375rem",
         "2.5": "0.625rem",
         "3.125": "0.78125rem",
+        "3.5": "0.875rem",
         "3.75": "0.9375rem",
         "5.75": "1.4375rem",
         "6.25": "1.5625rem",
         "7.5": "1.875rem",
         "8.25": "2.0625rem",
+        "12.5": "3.125rem",
         "13.75": "3.4375rem",
         "15": "3.75rem",
         "16.5": "4.125rem",
@@ -63,10 +66,13 @@ const config: Config = {
       width: {
         "12.5": "3.125rem",
         "25": "6.25rem",
+        "82.5": "20.625rem",
+        "100": "25rem",
         "w-minus-avatar": "calc(100% - 55px)",
       },
       maxWidth: {
         "62.5": "15.625rem",
+        "82.5": "20.625rem",
         "100": "25rem",
         "150": "37.5rem",
       },
@@ -82,6 +88,7 @@ const config: Config = {
       },
       minHeight: {
         "screen-minus-header": "calc(100vh - 82px )",
+        "100": "25rem",
         "150": "37.5rem",
       },
       fontSize: {
