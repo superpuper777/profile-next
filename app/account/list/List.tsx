@@ -19,9 +19,9 @@ const List = () => {
   if (error) return <div>Ошибка загрузки профиля</div>;
   if (!data) return <div>Загрузка...</div>;
   return (
-    <div className="px-60 py-12.5 bg-background-primary">
+    <div className="xl:px-60 lg:px-16 xl:py-12.5 xs:px-5 bg-background-primary">
       <h1 className="title mb-7.5 font-semibold">Список аккаунтов</h1>
-      <ul>
+      <ul className="xl:mb-25 xs:mb-16.5">
         {data.map((user) => (
           <li key={user.slug}>
             <ListItem name={user.name} email={user.email} image={user.image} />

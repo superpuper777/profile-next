@@ -21,14 +21,15 @@ const ProfileHeader = () => {
       ) : (
         <div className="relative border border-strokes-secondary w-full h-full" />
       )}
-
-      <ProfileAvatar
-        name={name}
-        image={image || undefined}
-        size={100}
-        className="absolute top-37.5 left-60  w-25 h-25 "
-        classNameForName="text-4xl"
-      />
+      <div className="lg:px-60 md:px-32 xs:px-7.5">
+        <ProfileAvatar
+          name={name}
+          image={image || undefined}
+          size={100}
+          className="absolute top-37.5 w-25 h-25 "
+          classNameForName="text-4xl"
+        />
+      </div>
     </div>
   );
 };

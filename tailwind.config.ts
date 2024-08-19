@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "309px",
+      },
       fontFamily: {
         sans: [
           "Inter",
@@ -52,21 +55,29 @@ const config: Config = {
         "8.25": "2.0625rem",
         "13.75": "3.4375rem",
         "15": "3.75rem",
+        "16.5": "4.125rem",
         "21.25": "5.3125rem",
+        "25": "6.25rem",
         "37.5": "9.375rem",
       },
       width: {
         "12.5": "3.125rem",
         "25": "6.25rem",
+        "w-minus-avatar": "calc(100% - 55px)",
       },
       maxWidth: {
+        "62.5": "15.625rem",
         "100": "25rem",
         "150": "37.5rem",
       },
       height: {
         "12.5": "3.125rem",
         "25": "6.25rem",
+        "38.5": "9.625rem",
         "50": "12.5rem",
+        "71": "17.75rem",
+        "100": "25rem",
+        "screen-minus-header": "calc(100vh - 82px - 79px)",
         "screen-minus-header-footer": "calc(100vh - 82px - 72px)",
       },
       minHeight: {

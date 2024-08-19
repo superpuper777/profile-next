@@ -69,8 +69,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen-minus-header-footer">
-      <div className="flex justify-center items-start flex-col bg-background-primary max-w-100 w-full p-7.5 rounded-1.25 border border-strokes-secondary">
+    <div className="flex justify-center h-screen-minus-header-footer xs:items-start md:items-center">
+      <div className="flex md:justify-center md:items-start flex-col bg-background-primary max-w-100 md:h-auto xs:h-full xs:justify-start w-full p-7.5 rounded-1.25 border border-strokes-secondary">
         <h2 className="title font-semibold mb-6.25">
           {type === "login" ? (
             "Вход в Yoldi Agency"

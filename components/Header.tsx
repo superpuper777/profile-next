@@ -12,10 +12,10 @@ const Header = () => {
   const { profile } = useProfileStore();
   const isGuest = useIsGuest();
   return (
-    <header className="flex w-full justify-between items-center py-3.75 px-5">
+    <header className="flex w-full justify-between items-center py-3.75 px-5 border-b border-strokes-secondary">
       <div className="flex items-center gap-5">
         <Image src={logo} alt="Logo" width={80} height={50} />
-        <span className="paragraph">
+        <span className="paragraph hidden lg:block">
           Разрабатываем и запускаем <br /> сложные веб проекты
         </span>
       </div>

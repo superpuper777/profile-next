@@ -80,7 +80,7 @@ const InputField = <T extends FieldValues>({
             value={value}
             aria-invalid={!!error}
             aria-describedby={`${id}-error`}
-            className={`py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${className}`}
+            className={`py-2 px-3 border border-strokes-primary lg:h-38.5 xs:h-71 md:max-h-80 rounded-1.25 focus:outline-none resize-none ${className}`}
           />
         ) : (
           <input
@@ -103,7 +103,9 @@ const InputField = <T extends FieldValues>({
             aria-describedby={`${id}-error`}
             disabled={disabled}
             value={value}
-            className={`${labelPosition === "inside" ? "pl-13.75" : "pl-5"} py-3.125 paragraph border border-custom-gray bg-background-primary rounded-1.25 placeholder:text-custom-gray focus:border-custom-gray focus:ring-0 hover:border-custom-gray hover:ring-0 outline-none ${className}`}
+            className={`${
+              labelPosition === "inside" ? "pl-13.75" : "pl-5"
+            } py-3.125 paragraph border border-custom-gray bg-background-primary rounded-1.25 placeholder:text-custom-gray focus:border-custom-gray focus:ring-0 hover:border-custom-gray hover:ring-0 outline-none ${className}`}
           />
         )}
         {secondIcon && labelPosition === "inside" && (

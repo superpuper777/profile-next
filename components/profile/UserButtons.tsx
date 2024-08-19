@@ -32,7 +32,7 @@ const LogoutButton = () => {
   );
 };
 
-const EditButton = () => {
+const EditButton = ({ className = "" }) => {
   const router = useRouter();
   const pathname = usePathname();
   const { openModal } = useModalStore();
@@ -48,6 +48,7 @@ const EditButton = () => {
       iconAlt="Иконка редактирования"
       onClick={handleEditClick}
       text="Редактировать"
+      className={`${className}`}
     />
   );
 };

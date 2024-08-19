@@ -17,13 +17,13 @@ const ProfileContent: React.FC<ProfileContentProps> = ({ onUpdateProfile }) => {
   }
   const { name, email, description } = profile;
   return (
-    <div className="px-60 py-21.25 bg-background-primary">
-      <div className="flex items-start justify-between">
-        <div className="mb-7.5">
+    <div className="lg:px-60 md:px-32 xs:px-7.5 py-21.25 mb-[5%] bg-background-primary">
+      <div className="flex lg:flex-row lg:items-start lg:justify-between xs:flex-col xs:mb-7.5">
+        <div className="lg:mb-7.5 xs:mb-2.5">
           <h1 className="title mb-2.5">{name}</h1>
           <span className="paragraph text-custom-gray">{email}</span>
         </div>
-        {!isGuest && <EditButton />}
+        {!isGuest && <EditButton className="xs:self-start" />}
       </div>
       <p className="paragraph mb-15">{description}</p>
       {!isGuest && <LogoutButton />}

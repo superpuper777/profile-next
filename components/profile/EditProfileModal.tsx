@@ -58,6 +58,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     });
     setIsLoading(false);
     closeModal();
+    router.replace(pathname);
   };
 
   const handleCloseModal = () => {
@@ -68,8 +69,8 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-150 max-h-150 w-full h-auto mx-auto">
+    <div className="fixed md:top-0 xs:top-[81px] inset-0 md:bg-black md:bg-opacity-50 flex md:items-center md:justify-center xs:items-stretch">
+      <div className="bg-white p-7.5 md:rounded-1.25 xs:rounded-none shadow-lg lg:max-w-150 lg:max-h-150 w-full md:h-auto mx-auto">
         <h2 className="title mb-6.25 font-semibold">Редактировать профиль</h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
