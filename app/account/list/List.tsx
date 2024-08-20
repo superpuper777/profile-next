@@ -21,8 +21,10 @@ const List = () => {
   if (error) return <div>Ошибка загрузки профиля</div>;
   if (!data) return <div>Загрузка...</div>;
   return (
-    <div className="xl:px-60 lg:px-16 xl:py-12.5 xs:px-5 bg-background-primary">
-      <h1 className="title mb-7.5 font-semibold">Список аккаунтов</h1>
+    <div className="xl:px-60 lg:px-16 py-12.5  xs:px-5 bg-background-primary">
+      <h1 className="title md:font-medium xs:font-normal mb-7.5">
+        Список аккаунтов
+      </h1>
       <ul className="xl:mb-25 xs:mb-16.5">
         {data.map((user, index) => (
           <li

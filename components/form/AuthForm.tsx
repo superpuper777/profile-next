@@ -84,7 +84,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           className="flex flex-col gap-3.75 w-full"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="mx-1.25 flex flex-col gap-3.5">
+          <div className="md:mx-1.25 xs:mx-0 flex flex-col gap-3.5">
             {type === "register" && (
               <InputField
                 id="name"

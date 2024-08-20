@@ -42,7 +42,7 @@ const ProfileAvatar: React.FC<AvatarProps> = ({
         />
       ) : (
         <div
-          className={`text-txt-color font-semibold flex items-center justify-center w-full h-full ${classNameForName}`}
+          className={`text-txt-color flex items-center justify-center w-full h-full ${classNameForName}`}
         >
           {getInitials(name)}
         </div>

@@ -87,7 +87,7 @@ const config: Config = {
         "screen-minus-header-footer": "calc(100vh - 82px - 72px)",
       },
       minHeight: {
-        "screen-minus-header": "calc(100vh - 82px )",
+        "screen-minus-header": "calc(100vh - 82px)",
         "100": "25rem",
         "150": "37.5rem",
       },
