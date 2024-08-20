@@ -1,10 +1,10 @@
 "use client";
 import useSWR from "swr";
-
 import { ProfileDto } from "@/app/types/profile";
 import { fetchUsers } from "@/utils/fetcher";
 import ListItem from "./ListItem";
 import { useProfile } from "@/hooks/useProfile";
+import Spinner from "@/components/Spinner";
 
 const List = () => {
   const { profile } = useProfile();
@@ -19,7 +19,8 @@ const List = () => {
   );
 
   if (error) return <div>Ошибка загрузки профиля</div>;
-  if (!data) return <div>Загрузка...</div>;
+  if (!data) return <Spinner />;
+
   return (
     <div className="xl:px-60 lg:px-16 py-12.5  xs:px-5 bg-background-primary">
       <h1 className="title md:font-medium xs:font-normal mb-7.5">
