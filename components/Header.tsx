@@ -2,25 +2,39 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useProfileStore } from "@/store/useProfileStore";
-import useIsGuest from "@/hooks/useIsGuest";
 import logo from "@/public/logo-wrapper.svg";
 import ProfileAvatar from "./profile/ProfileAvatar";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const Header = () => {
+  const router = useRouter();
+  const { isAuthenticated } = useAuthStore();
   const { profile } = useProfileStore();
-  const isGuest = useIsGuest();
+
+  const handleLogoClick = () => {
+    router.push("/");
+  };
+
   return (
     <header className="flex w-full justify-between items-center pt-3.75 pb-3.5 px-5 border-b border-strokes-secondary">
       <div className="flex items-center justify-center gap-5">
-        <Image src={logo} alt="Logo" width={80} height={50} />
+        <Image
+          src={logo}
+          alt="Logo"
+          width={80}
+          height={50}
+          onClick={handleLogoClick}
+          className="cursor-pointer"
+        />
         <span className="paragraph hidden lg:block">
           Разрабатываем и запускаем <br /> сложные веб проекты
         </span>
       </div>
       <div>
-        {profile && !isGuest ? (
+        {profile && isAuthenticated ? (
           <div className="flex items-center gap-5 mr-[10px]">
             <span>{profile.name}</span>
             <ProfileAvatar

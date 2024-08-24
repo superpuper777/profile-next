@@ -52,6 +52,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       const endpoint =
         type === "login" ? "/api/auth/login" : "/api/auth/sign-up";
       const response = await axios.post(`${apiUrl}${endpoint}`, data);
+      console.log(data);
 
       if (response.data.error) {
         throw new Error(response.data.error);
@@ -61,7 +62,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       setApiKey(apiKey);
 
       console.log("Login successful!");
-      router.push("/account/owner");
+      // router.push("/account/owner");
+      // router.push(`account/profile/${email}`);
       reset();
     } catch (error: any) {
       handleError(error);

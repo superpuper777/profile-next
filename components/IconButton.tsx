@@ -1,6 +1,6 @@
 import React from "react";
 import { StaticImageData } from "next/image";
-import Image from "next/image"; // Если используете Next.js
+import Image from "next/image";
 
 export interface ButtonProps {
   iconSrc: StaticImageData;

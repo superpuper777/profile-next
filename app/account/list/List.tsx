@@ -5,6 +5,7 @@ import { fetchUsers } from "@/utils/fetcher";
 import ListItem from "./ListItem";
 import { useProfile } from "@/hooks/useProfile";
 import Spinner from "@/components/Spinner";
+import Link from "next/link";
 
 const List = () => {
   const { profile } = useProfile();
@@ -34,7 +35,13 @@ const List = () => {
               index === 0 ? "border-t-[0.5px] border-strokes-secondary" : ""
             }`}
           >
-            <ListItem name={user.name} email={user.email} image={user.image} />
+            <Link href={`/account/profile/${user.slug}`}>
+              <ListItem
+                name={user.name}
+                email={user.email}
+                image={user.image}
+              />
+            </Link>
           </li>
         ))}
       </ul>

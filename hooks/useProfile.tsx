@@ -1,27 +1,40 @@
 import useSWR from "swr";
-import { fetchProfile, updateProfile } from "@/utils/fetcher";
+import { fetchProfile, fetchUser, updateProfile } from "@/utils/fetcher";
 import { ProfileDto } from "@/app/types/profile";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useProfileStore } from "@/store/useProfileStore";
 import { useModalStore } from "@/store/useModalStore";
 
-export const useProfile = () => {
-  const { apiKey } = useAuthStore();
-  const { setProfile } = useProfileStore();
+export const useProfile = (slug?: string) => {
+  const { apiKey, isAuthenticated } = useAuthStore();
+  const { setProfile, clearProfile } = useProfileStore();
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const { closeModal } = useModalStore();
 
+  const shouldFetchProfile = isAuthenticated && apiKey;
+
+  const key: string | [string, string] | null = slug
+    ? `${apiUrl}/api/user/${slug}`
+    : apiKey && isAuthenticated
+    ? [`${apiUrl}/api/profile`, apiKey]
+    : null;
+
+  const fetcher = (url: string, apiKey?: string) => {
+    if (apiKey) {
+      return fetchProfile(url, apiKey);
+    }
+    return fetchUser(url);
+  };
+
   const { data, error, mutate } = useSWR<ProfileDto>(
-    apiKey ? [`${apiUrl}/api/profile`, apiKey] : null,
-    ([url, key]) => {
-      if (typeof key !== "string") {
-        throw new Error("API ключ должен быть строкой");
-      }
-      return fetchProfile(url, key);
-    },
+    key ? (key === `${apiUrl}/api/profile` ? [key, apiKey] : key) : null,
+    (url: string, apiKey?: string) => fetcher(url, apiKey),
     {
       onSuccess: (data) => {
         setProfile(data);
+      },
+      onError: () => {
+        clearProfile(); // Очищаем профиль в случае ошибки
       },
     }
   );

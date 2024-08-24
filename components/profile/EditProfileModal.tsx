@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 type EditProfileModalProps = {
   data: ProfileDto;
-  onUpdate: (updatedProfile: ProfileDto) => void;
+  onUpdate?: (updatedProfile: ProfileDto) => void;
 };
 
 type FormValues = {
@@ -51,11 +51,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   const onSubmit: SubmitHandler<FormValues> = (formData) => {
     setIsLoading(true);
-
-    onUpdate({
-      ...data,
-      ...formData,
-    });
+    if (onUpdate) {
+      onUpdate({
+        ...data,
+        ...formData,
+      });
+    }
     setIsLoading(false);
     closeModal();
     router.replace(pathname);

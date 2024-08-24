@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 interface AuthState {
   apiKey: string | null;
+  isAuthenticated: boolean;
   setApiKey: (key: string | null) => void;
   clearApiKey: () => void;
 }
@@ -33,16 +34,17 @@ const safeLocalStorage = {
 
 export const useAuthStore = create<AuthState>()((set) => ({
   apiKey: safeLocalStorage.getItem("api_key") || null,
+  isAuthenticated: !!safeLocalStorage.getItem("api_key"),
   setApiKey: (key: string | null) => {
     if (key) {
       safeLocalStorage.setItem("api_key", key);
     } else {
       safeLocalStorage.removeItem("api_key");
     }
-    set({ apiKey: key });
+    set({ apiKey: key, isAuthenticated: !!key });
   },
   clearApiKey: () => {
     safeLocalStorage.removeItem("api_key");
-    set({ apiKey: null });
+    set({ apiKey: null, isAuthenticated: false });
   },
 }));

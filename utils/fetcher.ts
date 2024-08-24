@@ -43,6 +43,25 @@ export const fetchUsers = async (url: string): Promise<Array<ProfileDto>> => {
   }
 };
 
+export const fetchUser = async (url: string): Promise<ProfileDto> => {
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(
+        error.response.data.message || "Ошибка при получении данных"
+      );
+    } else {
+      throw new Error("Ошибка при получении данных");
+    }
+  }
+};
+
 export const updateProfile = async (
   url: string,
   profile: ProfileDto,
